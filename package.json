@@ -1,11 +1,26 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev",
+    "dev": "vitepress dev --port 5530",
     "build": "vitepress build",
-    "serve": "vitepress preview"
+    "serve": "vitepress preview",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "vitepress": "^1.2.3"
+    "@iconify-json/line-md": "^1.1.37",
+    "@iconify-json/lucide": "^1.1.190",
+    "@types/fs-extra": "^11.0.4",
+    "@vueuse/core": "^10.10.0",
+    "fs-extra": "^11.2.0",
+    "prettier": "^3.3.1",
+    "unocss": "^0.60.4",
+    "vitepress": "^1.2.3",
+    "vue": "^3.4.27"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "semi": false,
+    "singleQuote": true,
+    "quoteProps": "consistent"
   }
 }

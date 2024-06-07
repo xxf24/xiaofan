@@ -1,0 +1,15 @@
+*,
+::before,
+::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--border, #e5e7eb);
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
+  -webkit-tap-highlight-color: transparent;
+}
