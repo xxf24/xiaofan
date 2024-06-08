@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme-without-fonts'
+import DocHeader from './components/DocHeader.vue'
 </script>
 
 <template>
-  <DefaultTheme.Layout></DefaultTheme.Layout>
+  <DefaultTheme.Layout>
+    <template #doc-before>
+      <DocHeader />
+    </template>
+  </DefaultTheme.Layout>
 </template>

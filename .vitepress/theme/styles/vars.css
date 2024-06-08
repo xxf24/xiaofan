@@ -1,8 +1,20 @@
 :root {
+  --bg-1: #fff;
+  --bg-2: #f6f8fa;
+  --brand-1: #0e84de;
+  --text-1: #333;
+  --text-2: #666;
+  --text-3: #999;
   --border: #d0d7de;
   --radius: 0.5rem;
 }
 
 :root.dark {
+  --bg-1: #191919;
+  --bg-2: #212121;
+  --brand-1: #42b883;
+  --text-1: #ddd;
+  --text-2: #aaa;
+  --text-3: #777;
   --border: #2b2b2b;
 }

@@ -2,8 +2,9 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev --port 5530",
-    "build": "vitepress build",
+    "build": "npm run dump && vitepress build",
     "serve": "vitepress preview",
+    "dump": "node scripts/dump",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -11,7 +12,10 @@
     "@iconify-json/lucide": "^1.1.190",
     "@types/fs-extra": "^11.0.4",
     "@vueuse/core": "^10.10.0",
+    "axios": "^1.7.2",
+    "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3",
     "prettier": "^3.3.1",
     "unocss": "^0.60.4",
     "vitepress": "^1.2.3",

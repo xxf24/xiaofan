@@ -1,8 +1,8 @@
 import { formatDate } from '@vueuse/core'
-import postsJson from '../data/posts.json'
-import notesJson from '../data/notes.json'
-import { sortPressByCategory, sortPressByTimeline } from './sort'
 import type { DefaultTheme } from 'vitepress'
+import postsJson from '../data/__posts.json'
+import notesJson from '../data/__notes.json'
+import { sortPressByCategory, sortPressByTimeline } from './sort'
 
 export const sidebar: DefaultTheme.Sidebar = {
   '/posts': [

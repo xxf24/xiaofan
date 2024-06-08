@@ -17,6 +17,7 @@ export const tsConfigPaths = [
 
 export const vpComponentAlias = overrideComponents([
   { from: 'VPSwitchAppearance', to: 'ToggleDarkMode' },
+  { from: 'VPDocFooter' },
 ])
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components

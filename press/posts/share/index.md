@@ -1,5 +1,3 @@
-# ⭐ 书签页
-
 ## 追更中
 
 - [科技爱好者周刊](https://www.ruanyifeng.com/blog/)

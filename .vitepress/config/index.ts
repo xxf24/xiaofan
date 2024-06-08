@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 import unocss from 'unocss/vite'
+import postsJson from '../data/__posts.json'
+import notesJson from '../data/__notes.json'
 import { sidebar } from './sidebar'
 import { tsConfigPaths, vpComponentAlias } from './alias'
 
@@ -55,4 +57,52 @@ export default defineConfig({
       }),
     ],
   },
+
+  transformPageData({ relativePath, frontmatter }) {
+    const isPosts = relativePath.startsWith('posts')
+    const fileLink = `/${relativePath.replace(/\.md$/, '')}`
+    const markMeta = getMarkdownMeta(fileLink, isPosts ? postsJson : notesJson)
+    const updatedFrontmatter: Record<string, any> = isPosts
+      ? {
+          custom: 'center',
+          prev: markMeta?.prev,
+          next: markMeta?.next,
+        }
+      : {
+          custom: true,
+          lastUpdateTime: markMeta?.lastUpdateTime,
+        }
+
+    return {
+      frontmatter: {
+        ...updatedFrontmatter,
+        ...frontmatter,
+      },
+    }
+  },
 })
+
+function getMarkdownMeta(fileLink: string, press: MarkdownMetaArr) {
+  const index = press.findIndex(({ link }) => link === fileLink)
+  if (index > -1) {
+    let prev, next
+    if (press.length > 1) {
+      prev =
+        index > 0
+          ? {
+              link: press[index - 1].link,
+              text: press[index - 1].title,
+            }
+          : undefined
+      next =
+        index < press.length - 1
+          ? {
+              link: press[index + 1].link,
+              text: press[index + 1].title,
+            }
+          : undefined
+    }
+    const lastUpdateTime = press[index].lastUpdateTime
+    return { prev, next, lastUpdateTime }
+  }
+}

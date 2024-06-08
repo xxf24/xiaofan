@@ -24,6 +24,15 @@ aside: false
 
 使用的一些开源项目：[vue](https://github.com/vuejs/core) | [vueuse](https://github.com/vueuse/vueuse) | [unocss](https://github.com/unocss/unocss)
 
+<CollapseBox icon='i-lucide:github'>
+  <div class='flex flex-col gap-2'>
+    <GitRepoCard endPoint='vuejs/vitepress' />
+    <GitRepoCard endPoint='vuejs/core' />
+    <GitRepoCard endPoint='vueuse/vueuse' />
+    <GitRepoCard endPoint='unocss/unocss' />
+  </div>
+</CollapseBox>
+
 ## 联系作者
 
 - Email: <a href="mailto:xiaofan5530@gmail.com">xiaofan5530@gmail.com</a>
