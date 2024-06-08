@@ -5,14 +5,17 @@
     "build": "npm run dump && vitepress build",
     "serve": "vitepress preview",
     "dump": "node scripts/dump",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@iconify-json/line-md": "^1.1.37",
     "@iconify-json/lucide": "^1.1.190",
+    "@sxzz/eslint-config": "^3.12.1",
     "@types/fs-extra": "^11.0.4",
     "@vueuse/core": "^10.10.0",
     "axios": "^1.7.2",
+    "eslint": "^9.4.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",

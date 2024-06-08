@@ -23,7 +23,7 @@ async function dumpMarkdowns(cwd = from) {
       }
       let coverImage = cover
       if (!coverImage) {
-        const match = content.match(/(?<=!\[.*\]\()(.+)(?=\))/g)
+        const match = content.match(/(?<=!\[.*]\()(.+)(?=\))/g)
         match && (coverImage = match)
       }
 
@@ -61,7 +61,7 @@ function formatExcerpt(excerpt, limit = 100) {
   if (!excerpt) {
     return
   }
-  const markdownImageRegex = /!\[(.*?)\]\((.*?)\)/g
+  const markdownImageRegex = /!\[(.*?)]\((.*?)\)/g
   return excerpt
     .replaceAll(markdownImageRegex, '')
     .replaceAll(/[\n\r]/g, '')

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { templateRef, useCycleList, useEventListener } from '@vueuse/core'
+import { useCycleList, useEventListener } from '@vueuse/core'
 import { computed, onMounted, ref, watch } from 'vue'
 import {
   sortPressByCategory,
@@ -88,10 +88,10 @@ function respectUrlHash() {
 
 <template>
   <div class="">
-    <div class="mx-auto max-w-3xl mb-20 flex flex-col gap-8 p-5 md:px-8">
+    <div class="mx-auto mb-20 max-w-3xl flex flex-col gap-8 p-5 md:px-8">
       <nav class="flex">
         <ul
-          class="relative w-fit flex overflow-hidden rounded-lg p-1 bg-zinc-100 dark:bg-zinc-800"
+          class="relative w-fit flex overflow-hidden rounded-lg bg-zinc-100 p-1 dark:bg-zinc-800"
         >
           <li
             v-for="item in viewTabs"

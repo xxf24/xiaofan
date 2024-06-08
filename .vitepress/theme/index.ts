@@ -1,7 +1,7 @@
-import type { Theme } from 'vitepress'
 import Layout from './Layout.vue'
 import { setupComponents } from './components'
 import notes from './pages/notes.vue'
+import type { Theme } from 'vitepress'
 import './styles/index.css'
 import 'uno.css'
 

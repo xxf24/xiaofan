@@ -1,7 +1,7 @@
-import type { App, Component } from 'vue'
 import CollapseBox from './CollapseBox.vue'
 import DemoWrapper from './DemoWrapper.vue'
 import GitRepoCard from './GitRepoCard.vue'
+import type { App, Component } from 'vue'
 
 export const globals: Record<string, Component> = {
   CollapseBox,

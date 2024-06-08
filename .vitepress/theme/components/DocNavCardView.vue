@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <main class="mx-auto w-fit">
+  <div class="mx-auto w-fit">
     <div class="px-5 pb-20 pt-5 md:px-8">
       <ul class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <li v-for="post in items" :key="post.link">
@@ -43,5 +43,5 @@ defineProps<{
         </li>
       </ul>
     </div>
-  </main>
+  </div>
 </template>
