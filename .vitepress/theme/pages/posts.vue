@@ -1,5 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DocNavCardView from '../components/DocNavCardView.vue'
+import postsJson from '@/data/__posts.json'
+</script>
 
 <template>
-  <div></div>
+  <DocNavCardView :items="postsJson" />
 </template>

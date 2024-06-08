@@ -137,10 +137,10 @@
 }
 
 .vp-doc h2 {
+  border-top: none;
+  border-bottom: 1px solid var(--vp-c-divider);
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-top: none;
-  border-bottom: 1px solid var(--vp-c-border);
 }
 
 /**

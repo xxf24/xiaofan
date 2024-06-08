@@ -59,10 +59,6 @@ const props = computed(() => {
         <span>{{ props.mtime }}</span>
       </li>
       <li v-if="props.tags" class="flex items-center">
-        <span
-          class="mr-1 transition peer-hover:text-$vp-c-brand-1"
-          :class="props.tags.length > 1 ? 'i-lucide:tags' : 'i-lucide:tag'"
-        />
         <template v-for="(tag, index) in props.tags" :key="index">
           <a
             :href="getLinkByNoteTag(tag)"
@@ -73,6 +69,10 @@ const props = computed(() => {
             >,</span
           >
         </template>
+        <span
+          class="order-first mr-1 transition peer-hover:text-$vp-c-brand-1"
+          :class="props.tags.length > 1 ? 'i-lucide:tags' : 'i-lucide:tag'"
+        />
       </li>
     </ul>
   </div>
