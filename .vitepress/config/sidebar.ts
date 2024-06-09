@@ -15,13 +15,6 @@ export const sidebar: DefaultTheme.Sidebar = {
     {
       text: '🍀 音·游·书·影',
       link: '/posts/arts/',
-      collapsed: true,
-      items: [
-        { text: '读《逃避自由》', link: '/posts/arts/逃避自由' },
-        { text: '读《四十自述》', link: '/posts/arts/四十自述' },
-        { text: '年度回顾之 2024', link: '/posts/arts/2024' },
-        { text: '年度回顾之 2023', link: '/posts/arts/2023' },
-      ],
     },
     {
       text: '🍚 干饭记',
