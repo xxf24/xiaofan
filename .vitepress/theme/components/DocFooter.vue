@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
+import { useBackLink } from '../utils/back'
 
 const { frontmatter } = useData()
 
@@ -11,13 +12,15 @@ const prevNext = computed(() => {
     next,
   }
 })
+
+const backItems = useBackLink()
 </script>
 
 <template>
   <div class="mt-24">
     <div
       v-if="prevNext.prev || prevNext.next"
-      class="flex flex-wrap gap-4 border-t text-sm text-$vp-c-text-2"
+      class="flex flex-wrap gap-4 text-sm text-$vp-c-text-2"
       :class="!prevNext.prev ? 'justify-end' : 'justify-between'"
     >
       <a
@@ -51,5 +54,16 @@ const prevNext = computed(() => {
         </div>
       </a>
     </div>
+    <ul class="border-t pt-4 space-y-3">
+      <li v-for="item in backItems" :key="item.link">
+        <a
+          class="inline-flex items-center gap-1 text-sm transition hover:text-$vp-c-brand-1"
+          :href="item.link"
+        >
+          <span class="i-lucide:chevrons-left"></span>
+          <span>{{ item.text }}</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
