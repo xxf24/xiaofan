@@ -1,3 +1,5 @@
+import type { MarkdownMetaArr, MarkdownMetaMap } from './types'
+
 export function sortPressByTimeline(
   source: MarkdownMetaArr,
   reverse?: boolean,

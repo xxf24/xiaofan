@@ -1,6 +1,5 @@
 import { withBase } from 'vitepress'
-
-export type NotesView = 'category' | 'timeline' | 'tags'
+import type { NotesView } from './types'
 
 const notesPathPrefix = withBase('/notes#')
 

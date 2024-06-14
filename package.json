@@ -1,4 +1,5 @@
 {
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vitepress dev --port 5530",
@@ -10,17 +11,17 @@
   },
   "dependencies": {
     "@iconify-json/line-md": "^1.1.37",
-    "@iconify-json/lucide": "^1.1.190",
+    "@iconify-json/lucide": "^1.1.192",
     "@sxzz/eslint-config": "^3.12.1",
     "@types/fs-extra": "^11.0.4",
-    "@vueuse/core": "^10.10.0",
+    "@vueuse/core": "^10.11.0",
     "axios": "^1.7.2",
     "eslint": "^9.4.0",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
     "gray-matter": "^4.0.3",
-    "prettier": "^3.3.1",
-    "unocss": "^0.60.4",
+    "prettier": "^3.3.2",
+    "unocss": "^0.61.0",
     "vitepress": "^1.2.3",
     "vue": "^3.4.27"
   },

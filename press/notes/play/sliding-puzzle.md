@@ -15,9 +15,7 @@ tags:
 
 ## 试玩
 
-<script setup>import C from '@/demos/sliding-puzzle'</script>
-
-<DemoWrapper><C /></DemoWrapper>
+<DemoWrapper></DemoWrapper>
 
 ## 日志
 

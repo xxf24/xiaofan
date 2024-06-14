@@ -10,9 +10,7 @@ tags:
 
 ## 试玩
 
-<script setup>import C from '@/demos/minesweeper'</script>
-
-<DemoWrapper><C /></DemoWrapper>
+<DemoWrapper></DemoWrapper>
 
 ## 日志
 

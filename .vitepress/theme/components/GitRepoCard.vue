@@ -116,11 +116,11 @@ function getLanguageColor(language?: string) {
           <span class="ml-1">{{ data.language }}</span>
         </div>
         <div class="flex items-center" title="GitHub Stars">
-          <span class="i-lucide:star h-4 w-4" />
+          <span class="i-lucide:star" />
           <span class="ml-1">{{ data.stargazers_count }}</span>
         </div>
         <div class="flex items-center" title="GitHub Forks">
-          <span class="i-lucide:git-fork h-4 w-4" />
+          <span class="i-lucide:git-fork" />
           <span class="ml-1">{{ data.forks_count }}</span>
         </div>
         <div :class="data.stamp && 'ml-auto'">

@@ -1,16 +1,17 @@
 import { formatDate } from '@vueuse/core'
+import { sortPressByCategory, sortPressByTimeline } from '../theme/utils/sort'
 import postsJson from '../data/__posts.json'
 import notesJson from '../data/__notes.json'
-import { sortPressByCategory, sortPressByTimeline } from './sort'
 import type { DefaultTheme } from 'vitepress'
+import type { MarkdownMetaArr } from '../theme/utils/types'
 
-export const sidebar: DefaultTheme.Sidebar = {
+export const sidebar = {
   '/posts': [
     {
       text: '😋 岁岁年年',
-      link: '/posts/',
+      link: '/posts',
       collapsed: false,
-      items: [...getPostsSidebar(postsJson)],
+      items: getPostsSidebar(postsJson),
     },
     {
       text: '🍀 音·游·书·影',
@@ -28,11 +29,11 @@ export const sidebar: DefaultTheme.Sidebar = {
   '/notes': [
     {
       text: '🚀 目录页',
-      link: '/notes/',
+      link: '/notes',
     },
     ...getNotesSidebar(notesJson),
   ],
-}
+} satisfies DefaultTheme.Sidebar
 
 function getPostsSidebar(posts: MarkdownMetaArr): DefaultTheme.SidebarItem[] {
   const zodiacEmojiList = [...'🐭🐮🐯🐰🐉🐍🐴🐑🐒🐔🐶🐷']

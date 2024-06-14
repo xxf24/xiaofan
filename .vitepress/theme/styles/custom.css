@@ -42,7 +42,7 @@
 }
 
 :root.dark {
-  --vp-nav-blur-bg: #19191999;
+  --vp-nav-blur-bg: #12121299;
 }
 
 .VPNav,
@@ -176,7 +176,7 @@ tr {
 table {
   --border-table: 1px solid var(--vp-c-border);
   width: fit-content;
-  border-radius: var(--radius, 0.5rem);
+  border-radius: var(--radius);
   border-spacing: 0;
   border-collapse: separate !important;
   border: var(--border-table) !important;
@@ -203,7 +203,7 @@ table > tfoot:not(:last-child) {
 }
 
 .vp-doc img {
-  border-radius: var(--radius, 0.5rem);
+  border-radius: var(--radius);
 }
 
 html.dark .vp-doc img {

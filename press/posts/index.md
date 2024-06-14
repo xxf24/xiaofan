@@ -2,6 +2,9 @@
 layout: page
 ---
 
-<script setup>import Page from '@/theme/pages/posts.vue'</script>
+<script setup lang="ts">
+import DocNavCardGrid from '@/theme/components/DocNavCardGrid.vue'
+import postsJson from '@/data/__posts.json'
+</script>
 
-<Page />
+<DocNavCardGrid :docs="postsJson" />

@@ -17,7 +17,7 @@ const backItems = useBackLink()
 </script>
 
 <template>
-  <div class="mt-24">
+  <div class="mt-20">
     <div
       v-if="prevNext.prev || prevNext.next"
       class="flex flex-wrap gap-4 text-sm text-$vp-c-text-2"
@@ -48,7 +48,7 @@ const backItems = useBackLink()
           <span class="i-lucide:chevron-right" />
         </div>
         <div
-          class="text-$vp-c-text-1 transition group-hover:text-$vp-c-brand-1"
+          class="text-right text-$vp-c-text-1 transition group-hover:text-$vp-c-brand-1"
         >
           {{ prevNext.next.text }}
         </div>
@@ -60,7 +60,7 @@ const backItems = useBackLink()
           class="inline-flex items-center gap-1 text-sm transition hover:text-$vp-c-brand-1"
           :href="item.link"
         >
-          <span class="i-lucide:chevrons-left"></span>
+          <span class="i-lucide:chevrons-left" />
           <span>{{ item.text }}</span>
         </a>
       </li>

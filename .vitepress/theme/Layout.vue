@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme-without-fonts'
+import Welcome from './views/welcome.vue'
+import DocFloatPanel from './components/DocFloatPanel.vue'
 import DocHeader from './components/DocHeader.vue'
-import Begin from './pages/begin.vue'
+
+const Layout = DefaultTheme.Layout
 </script>
 
 <template>
-  <DefaultTheme.Layout>
+  <Layout>
+    <template #home-features-after>
+      <Welcome />
+    </template>
     <template #doc-before>
+      <DocFloatPanel />
       <DocHeader />
     </template>
-    <template #home-features-after>
-      <Begin />
-    </template>
-  </DefaultTheme.Layout>
+  </Layout>
 </template>

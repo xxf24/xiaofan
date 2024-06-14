@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitepress'
-import unocss from 'unocss/vite'
+import Unocss from 'unocss/vite'
 import postsJson from '../data/__posts.json'
 import notesJson from '../data/__notes.json'
 import { sidebar } from './sidebar'
 import { tsConfigPaths, vpComponentAlias } from './alias'
+import type { MarkdownMetaArr } from '../theme/utils/types'
 
 export default defineConfig({
   srcDir: 'press',
@@ -12,9 +13,15 @@ export default defineConfig({
   metaChunk: true,
 
   base: '/',
+  cleanUrls: true,
+  rewrites: {
+    'posts/index.md': 'posts.md',
+    'notes/index.md': 'notes.md',
+  },
+
   title: '小凡の个人日志',
-  description: '这个人很懒，什么都没有留下',
-  lang: 'zh-Hans',
+  description: '这个人很懒，什么都没留下',
+  lang: 'zh-cn',
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
   ],
@@ -28,16 +35,11 @@ export default defineConfig({
       { text: '关于', link: '/about' },
     ],
     externalLinkIcon: true,
+    // locales
     outline: { label: '在本页', level: [2, 3] },
     sidebarMenuLabel: '目录',
     returnToTopLabel: '返回顶部',
     darkModeSwitchLabel: '深色模式',
-  },
-
-  cleanUrls: true,
-  rewrites: {
-    'posts/index.md': 'posts.md',
-    'notes/index.md': 'notes.md',
   },
 
   markdown: {},
@@ -47,7 +49,7 @@ export default defineConfig({
       alias: [...tsConfigPaths, ...vpComponentAlias],
     },
     plugins: [
-      unocss({
+      Unocss({
         // patch: don't extractor the content in default theme
         content: {
           pipeline: {
@@ -93,14 +95,14 @@ function getMarkdownMeta(fileLink: string, press: MarkdownMetaArr) {
               link: press[index - 1].link,
               text: press[index - 1].title,
             }
-          : undefined
+          : void 0
       next =
         index < press.length - 1
           ? {
               link: press[index + 1].link,
               text: press[index + 1].title,
             }
-          : undefined
+          : void 0
     }
     const lastUpdateTime = press[index].lastUpdateTime
     return { prev, next, lastUpdateTime }

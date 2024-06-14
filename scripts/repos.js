@@ -16,6 +16,8 @@ const endPoints = [
   'total-typescript/ts-reset',
 ]
 
+const defaultSavePath = join(process.cwd(), '.vitepress/data/repos.json')
+
 async function request(endPoint) {
   const api = `https://api.github.com/repos/${endPoint}`
   const { data } = await axios.get(api, {
@@ -39,12 +41,12 @@ async function main() {
   const items = (
     await Promise.all(endPoints.map(endPoint => request(endPoint)))
   ).reduce((prev, curr) => {
-    prev[curr.key] = { ...curr, key: undefined }
+    prev[curr.key] = { ...curr, key: void 0 }
     return prev
   }, {})
 
   await fs.outputJSON(
-    join(process.cwd(), '.vitepress/data/repos.json'),
+    defaultSavePath,
     {
       stamp: Date.now(),
       items,

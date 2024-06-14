@@ -1,6 +1,5 @@
 import Layout from './Layout.vue'
 import { setupComponents } from './components'
-import notes from './pages/notes.vue'
 import type { Theme } from 'vitepress'
 import './styles/index.css'
 import 'uno.css'
@@ -8,6 +7,6 @@ import 'uno.css'
 export default {
   Layout,
   enhanceApp({ app }) {
-    setupComponents(app, { notes })
+    setupComponents(app)
   },
 } satisfies Theme

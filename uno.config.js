@@ -8,24 +8,16 @@ import {
 
 export default defineConfig({
   presets: [
-    presetAttributify(),
     presetUno(),
+    presetAttributify(),
     presetIcons({
       scale: 1.12,
       extraProperties: {
         'display': 'inline-block',
         'vertical-align': 'middle',
+        'margin-top': '-2px',
       },
     }),
   ],
   transformers: [transformerDirectives()],
-  shortcuts: {
-    'flex-center': 'flex items-center justify-center',
-    'inline-flex-center': 'inline-flex items-center justify-center',
-  },
-  theme: {
-    duration: {
-      DEFAULT: '250ms',
-    },
-  },
 })

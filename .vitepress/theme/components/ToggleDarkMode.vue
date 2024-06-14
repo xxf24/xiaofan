@@ -3,13 +3,13 @@ import { toggle } from '../utils/dark'
 </script>
 
 <template>
-  <div
-    class="inline-flex-center rounded-full p-3 transition"
-    hover="cursor-pointer bg-black/5 dark:bg-white/10"
+  <button
+    class="flex items-center justify-center rounded-full p-2.5 text-base text-$vp-c-text-2 transition"
+    hover="text-$vp-c-text-1 bg-black/5 dark:bg-white/10"
     @click="toggle"
   >
     <span class="i-line-md:sun-rising-loop dark:i-line-md:moon-rising-loop" />
-  </div>
+  </button>
 </template>
 
 <style>
