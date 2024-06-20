@@ -1,23 +1,16 @@
-import {
-  defineConfig,
-  presetAttributify,
-  presetIcons,
-  presetUno,
-  transformerDirectives,
-} from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from "unocss"
 
 export default defineConfig({
   presets: [
-    presetUno(),
     presetAttributify(),
+    presetUno(),
     presetIcons({
       scale: 1.12,
-      extraProperties: {
-        'display': 'inline-block',
-        'vertical-align': 'middle',
-        'margin-top': '-2px',
-      },
     }),
   ],
-  transformers: [transformerDirectives()],
+  theme: {
+    duration: {
+      DEFAULT: "250ms",
+    },
+  },
 })

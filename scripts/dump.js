@@ -1,21 +1,21 @@
-import { execSync } from 'node:child_process'
-import process from 'node:process'
-import { dirname } from 'node:path'
-import fs from 'fs-extra'
-import fg from 'fast-glob'
-import gm from 'gray-matter'
+import { execSync } from "node:child_process"
+import process from "node:process"
+import { dirname } from "node:path"
+import fs from "fs-extra"
+import fg from "fast-glob"
+import gm from "gray-matter"
 
-const from = `${process.cwd()}/press`.replaceAll('\\', '/')
-const dest = `${process.cwd()}/.vitepress/data`.replaceAll('\\', '/')
+const from = `${process.cwd()}/press`.replaceAll("\\", "/")
+const dest = `${process.cwd()}/.vitepress/data`.replaceAll("\\", "/")
 
 async function dumpMarkdowns(cwd = from) {
-  const markdownFiles = await fg('**/*.md', { cwd })
+  const markdownFiles = await fg("**/*.md", { cwd })
   const results = await Promise.all(
-    markdownFiles.map(file => {
-      const slug = file.split('/', 1)[0]
+    markdownFiles.map((file) => {
+      const slug = file.split("/", 1)[0]
       const fp = `${cwd}/${file}`
       const { data, excerpt, content } = gm.read(fp, {
-        excerpt: slug === 'posts',
+        excerpt: slug === "posts",
       })
       const { date, title, description, cover, category, tags, draft } = data
       if (!date || !title || draft) {
@@ -29,7 +29,7 @@ async function dumpMarkdowns(cwd = from) {
 
       return {
         slug,
-        link: `/${file.replace(/\.md$/, '')}`,
+        link: `/${file.replace(/\.md$/, "")}`,
         date: new Date(Date.parse(date)).toISOString(),
         title,
         category,
@@ -63,8 +63,8 @@ function formatExcerpt(excerpt, limit = 100) {
   }
   const markdownImageRegex = /!\[(.*?)]\((.*?)\)/g
   return excerpt
-    .replaceAll(markdownImageRegex, '')
-    .replaceAll(/[\n\r]/g, '')
+    .replaceAll(markdownImageRegex, "")
+    .replaceAll(/[\n\r]/g, "")
     .slice(0, limit)
 }
 
@@ -72,14 +72,14 @@ function getLastUpdateTime(filepath) {
   try {
     const dir = dirname(filepath)
     const command = `cd ${dir} && git log -1 --pretty="format:%ci" ${filepath}`
-    const lastUpdateTime = execSync(command, { encoding: 'utf-8' })
+    const lastUpdateTime = execSync(command, { encoding: "utf-8" })
     return new Date(lastUpdateTime.trim()).toISOString()
   } catch {}
 }
 
 function saveToJson(raw, saveDir = dest) {
-  Object.keys(raw).map(async key => {
-    const savePath = `${saveDir}/__${key}.json`
+  Object.keys(raw).map(async (key) => {
+    const savePath = `${saveDir}/${key}.json`
     console.log(`dump ${raw[key].length} ${key} to ${savePath}`)
     await fs.outputJSON(savePath, raw[key], {
       spaces: 2,
@@ -88,8 +88,8 @@ function saveToJson(raw, saveDir = dest) {
 }
 
 dumpMarkdowns()
-  .then(res => saveToJson(res))
-  .catch(error => {
+  .then((res) => saveToJson(res))
+  .catch((error) => {
     console.error(error)
     process.exit(1)
   })

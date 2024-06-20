@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  name: "DemoWrapper",
+})
+
 withDefaults(
   defineProps<{
     client?: boolean
@@ -13,18 +17,15 @@ withDefaults(
 
 <template>
   <div
-    class="w-screen flex -ml-6 sm:ml-0 sm:w-full"
-    :class="center && 'justify-center'"
+    :class="[
+      'w-screen flex -ml-6 sm:ml-0 sm:w-full',
+      center && 'justify-center',
+    ]"
   >
     <div class="mx-2 w-fit overflow-hidden border rounded-lg p-4">
-      <template v-if="client">
-        <ClientOnly>
-          <slot />
-        </ClientOnly>
-      </template>
-      <template v-else>
+      <component :is="client ? 'ClientOnly' : 'div'">
         <slot />
-      </template>
+      </component>
     </div>
   </div>
 </template>

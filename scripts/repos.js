@@ -1,28 +1,28 @@
-import { join } from 'node:path'
-import process from 'node:process'
-import axios from 'axios'
-import fs from 'fs-extra'
+import { join } from "node:path"
+import process from "node:process"
+import { ofetch } from "ofetch"
+import fs from "fs-extra"
 
 // GitHub: owner/repo
 const endPoints = [
   // about.md
-  'vuejs/core',
-  'vuejs/vitepress',
-  'vueuse/vueuse',
-  'unocss/unocss',
+  "vuejs/core",
+  "vuejs/vitepress",
+  "vueuse/vueuse",
+  "unocss/unocss",
   // ts-type-gym.md
-  'type-challenges/type-challenges',
-  'sindresorhus/type-fest',
-  'total-typescript/ts-reset',
+  "type-challenges/type-challenges",
+  "sindresorhus/type-fest",
+  "total-typescript/ts-reset",
 ]
 
-const defaultSavePath = join(process.cwd(), '.vitepress/data/repos.json')
+const defaultSavePath = join(process.cwd(), ".vitepress/data/repos.json")
 
 async function request(endPoint) {
   const api = `https://api.github.com/repos/${endPoint}`
-  const { data } = await axios.get(api, {
+  const data = await ofetch(api, {
     headers: {
-      Accept: 'application/vnd.github.v4+json',
+      Accept: "application/vnd.github.v4+json",
     },
   })
   return {
@@ -39,7 +39,7 @@ async function request(endPoint) {
 
 async function main() {
   const items = (
-    await Promise.all(endPoints.map(endPoint => request(endPoint)))
+    await Promise.all(endPoints.map((endPoint) => request(endPoint)))
   ).reduce((prev, curr) => {
     prev[curr.key] = { ...curr, key: void 0 }
     return prev
@@ -57,7 +57,7 @@ async function main() {
   )
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(error)
   process.exit(1)
 })

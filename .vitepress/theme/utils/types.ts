@@ -1,6 +1,4 @@
-export type NotesView = 'category' | 'timeline' | 'tags'
-
-export type MarkdownMeta = {
+export interface MarkdownMeta {
   link: string
   date: string
   title: string
@@ -13,4 +11,9 @@ export type MarkdownMeta = {
 }
 
 export type MarkdownMetaArr = Array<MarkdownMeta>
-export type MarkdownMetaMap = Record<string, MarkdownMetaArr>
+export type MarkdownMetaOrderArr = Array<{
+  label: string
+  items: MarkdownMetaArr
+}>
+
+export type NotesView = "category" | "timeline" | "tags"

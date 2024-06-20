@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useData } from 'vitepress'
-import { formatDate, formatTimeAgo } from '@vueuse/core'
-import { getLinkByNoteTag } from '../utils/notes'
+import { computed } from "vue"
+import { useData } from "vitepress"
+import { formatDate, formatTimeAgo } from "@vueuse/core"
+import { getLinkByNoteTag } from "../utils/notes"
 
 const { frontmatter } = useData()
 
 const props = computed(() => {
-  let ctime = ''
-  let mtime = ''
-  const { custom, title, date, tags, lastUpdateTime } = frontmatter.value
-  if (!custom) {
+  let ctime = ""
+  let mtime = ""
+  const { hidden, center, title, date, tags, lastUpdateTime } =
+    frontmatter.value
+  if (hidden) {
     return
   }
   if (date) {
-    ctime =
-      custom === 'center'
-        ? formatDate(new Date(date), 'YYYY年M月D日', { locales: 'zh-CN' })
-        : formatDate(new Date(date), 'MMM D, YYYY', { locales: 'en' })
+    ctime = center
+      ? formatDate(new Date(date), "YYYY年M月D日", { locales: "zh-CN" })
+      : formatDate(new Date(date), "MMM D, YYYY", { locales: "en" })
   }
   if (lastUpdateTime) {
     mtime = formatTimeAgo(new Date(lastUpdateTime))
   }
   return {
-    custom,
+    center,
     title,
     ctime,
     mtime,
@@ -34,20 +34,18 @@ const props = computed(() => {
 
 <template>
   <div
-    v-if="!!props?.custom"
-    class="flex flex-col gap-4 pb-4"
-    :class="props.custom === 'center' && 'items-center'"
+    v-if="props?.title"
+    class="flex flex-col gap-4 pb-5"
+    :class="props.center && 'items-center'"
   >
-    <h1 v-if="props.title" class="text-3xl font-bold">
-      {{ props.title }}
-    </h1>
-    <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-$vp-c-text-2">
+    <h1 class="text-3xl font-bold">{{ props.title }}</h1>
+    <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-$vp-c-text-2">
       <li
         v-if="props.ctime"
         class="flex items-center gap-1"
         title="本文首次发布"
       >
-        <span class="i-lucide:calendar" />
+        <span class="i-lucide-calendar" />
         <span>{{ props.ctime }}</span>
       </li>
       <li
@@ -55,7 +53,7 @@ const props = computed(() => {
         class="flex items-center gap-1"
         title="最近一次修改"
       >
-        <span class="i-lucide:file-pen" />
+        <span class="i-lucide-file-pen" />
         <span>{{ props.mtime }}</span>
       </li>
       <li v-if="props.tags" class="flex items-center">
@@ -71,7 +69,7 @@ const props = computed(() => {
         </template>
         <span
           class="order-first mr-1 transition peer-hover:text-$vp-c-brand-1"
-          :class="props.tags.length > 1 ? 'i-lucide:tags' : 'i-lucide:tag'"
+          :class="props.tags.length > 1 ? 'i-lucide-tags' : 'i-lucide-tag'"
         />
       </li>
     </ul>

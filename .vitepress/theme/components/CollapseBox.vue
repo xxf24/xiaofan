@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue"
+
+defineOptions({
+  name: "CollapseBox",
+})
 
 const props = withDefaults(
   defineProps<{
     defaultOpen?: boolean
-    slotPlace?: 'top' | 'bottom'
+    slotPlace?: "top" | "bottom"
     label?: string
     icon?: string
   }>(),
   {
     defaultOpen: false,
-    slotPlace: 'top',
-    icon: 'i-lucide:lightbulb',
+    slotPlace: "top",
+    icon: "i-lucide-lightbulb",
   },
 )
 
@@ -23,11 +27,12 @@ const open = ref(props.defaultOpen)
     <div class="relative text-center">
       <div class="absolute top-1/2 w-full border-b" />
       <div
-        class="relative mx-auto h-9 w-80 inline-flex items-center justify-center gap-2 border rounded-2xl bg-$vp-c-bg transition"
+        class="relative h-9 w-80 inline-flex items-center justify-center gap-2 border rounded-2xl bg-$vp-c-bg transition"
         hover="cursor-pointer bg-$vp-c-bg-alt"
+        active="scale-105"
         @click="open = !open"
       >
-        <span :class="open ? 'i-lucide:chevron-up' : icon" />
+        <span :class="open ? 'i-lucide-chevron-up' : icon" />
         <span v-if="label" class="text-sm">{{ label }}</span>
       </div>
     </div>

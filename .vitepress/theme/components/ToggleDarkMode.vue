@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { toggle } from '../utils/dark'
+import { toggle } from "../utils/dark"
 </script>
 
 <template>
-  <button
-    class="flex items-center justify-center rounded-full p-2.5 text-base text-$vp-c-text-2 transition"
-    hover="text-$vp-c-text-1 bg-black/5 dark:bg-white/10"
+  <div
+    class="inline-flex items-center justify-center rounded-full p-3 transition"
+    hover="cursor-pointer bg-dark/5 dark:bg-white/10"
     @click="toggle"
   >
-    <span class="i-line-md:sun-rising-loop dark:i-line-md:moon-rising-loop" />
-  </button>
+    <span class="i-line-md-sun-rising-loop dark:i-line-md-moon-rising-loop" />
+  </div>
 </template>
 
 <style>

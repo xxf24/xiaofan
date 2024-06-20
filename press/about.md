@@ -6,9 +6,9 @@ aside: false
 
 ## 内容导航
 
-- 😋 生活琐事：[日常](/posts)
-- 📝 学习笔记：[笔记](/notes)
-- 🏷️ 杂七杂八：[音·游·书·影](/posts/arts/2024) | [干饭记](/posts/cooks/) | [书签页](/posts/share/)
+- 😋 生活琐事：[日常](./posts/index.md)
+- 📝 学习笔记：[笔记](./notes/index.md)
+- 🗂 杂七杂八：[音·游·书·影](./posts/arts/index.md) | [干饭记](./posts/cooks/index.md) | [书签页](./posts/share/index.md)
 
 ### 最近更新
 
@@ -24,15 +24,11 @@ aside: false
 
 使用的一些开源项目：[vue](https://github.com/vuejs/core) | [vueuse](https://github.com/vueuse/vueuse) | [unocss](https://github.com/unocss/unocss)
 
-<CollapseBox icon='i-lucide:github'>
-  <div class='flex flex-col gap-2 pb-2'>
+<CollapseBox icon="i-lucide:github">
+  <div class='mb-2 flex flex-col gap-2'>
     <GitRepoCard endPoint='vuejs/vitepress' />
     <GitRepoCard endPoint='vuejs/core' />
     <GitRepoCard endPoint='vueuse/vueuse' />
     <GitRepoCard endPoint='unocss/unocss' />
   </div>
 </CollapseBox>
-
-## 联系作者
-
-- Email: <a href="mailto:xiaofan5530@gmail.com">xiaofan5530@gmail.com</a>

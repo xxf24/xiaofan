@@ -1,30 +1,29 @@
 <script setup lang="ts">
-import { formatDate } from '@vueuse/core'
-import { ref } from 'vue'
-import { withBase } from 'vitepress'
-import { getLinkByNoteTag } from '../utils/notes'
-import type { MarkdownMetaMap } from '../utils/types'
+import { ref } from "vue"
+import { withBase } from "vitepress"
+import { formatDate } from "@vueuse/core"
+import { getLinkByNoteTag } from "../utils/notes"
+import type { MarkdownMetaOrderArr } from "../utils/types"
 
 const props = withDefaults(
   defineProps<{
-    labels: string[]
-    docs: MarkdownMetaMap
+    notes: MarkdownMetaOrderArr
     activeTag?: string
     dateFormatStr?: string
     showTimeline?: boolean
     collapsible?: boolean
   }>(),
   {
-    dateFormatStr: 'YYYY/MM/DD',
+    dateFormatStr: "YYYY/MM/DD",
     collapsible: void 0,
   },
 )
 
 const openList = ref<boolean[]>(
-  Array.from({ length: props.labels.length }, () => !props.collapsible),
+  Array.from({ length: props.notes.length }, () => !props.collapsible),
 )
 
-function preventCollapsing(event: Event, index: number) {
+function doCollapsing(event: Event, index: number) {
   if (props.collapsible === void 0) {
     event.preventDefault()
     return
@@ -36,31 +35,35 @@ function preventCollapsing(event: Event, index: number) {
 <template>
   <div class="flex flex-col gap-5">
     <details
-      v-for="(label, index) in labels"
+      v-for="(note, index) in notes"
       :key="index"
       :open="openList[index]"
-      @click="preventCollapsing($event, index)"
+      @click="doCollapsing($event, index)"
     >
       <summary class="h-12 w-full flex items-center">
-        <span class="text-right text-2xl" :class="showTimeline && 'w-16'">
-          {{ label }}
-        </span>
-        <span
+        <div class="text-right text-2xl" :class="showTimeline && 'w-16'">
+          {{ note.label }}
+        </div>
+        <div
           v-if="showTimeline"
           class="relative z-1 w-12 inline-flex items-center justify-center"
         >
           <span
-            class="h-3 w-3 rounded-full outline-$vp-c-brand-1 outline -outline-offset-2"
+            class="h-3 w-3 rounded-full outline-$vp-c-brand-1 outline outline-2 -outline-offset-2"
           />
-        </span>
+        </div>
       </summary>
       <ul>
         <li
-          v-for="(doc, key) in docs[label]"
-          :key="key"
-          class="group rounded-lg transition hover:bg-gray-400/10"
+          v-for="(item, index) in note.items"
+          :key="index"
+          class="not-last:border-b border-b-dotted"
         >
-          <a class="flex items-center" :href="withBase(doc.link)">
+          <a
+            :href="withBase(item.link)"
+            class="group flex items-center rounded-lg transition"
+            hover="bg-gray-400/10"
+          >
             <div
               class="relative h-10 flex flex-shrink-0 items-center"
               :class="
@@ -74,12 +77,12 @@ function preventCollapsing(event: Event, index: number) {
               />
             </div>
             <div
-              class="mr-2 py-2 underline underline-current underline-offset-4 underline-dotted transition sm:mr-4 group-hover:text-$vp-c-brand-1 group-hover:underline-solid"
+              class="mr-2 py-1.5 transition sm:mr-4 group-hover:text-$vp-c-brand-1"
             >
-              {{ doc.title }}
+              {{ item.title }}
             </div>
             <div
-              v-if="doc.tags?.length"
+              v-if="item.tags?.length"
               class="mr-2 gap-1"
               :class="[
                 activeTag ? 'ml-auto sm:ml-0 flex flex-wrap' : 'hidden sm:flex',
@@ -87,21 +90,22 @@ function preventCollapsing(event: Event, index: number) {
               ]"
             >
               <a
-                v-for="tag in doc.tags"
+                v-for="tag in item.tags"
                 :key="tag"
                 :href="getLinkByNoteTag(tag)"
-                class="inline-flex-center rounded-md bg-gray-400/20 px-2 py-0.5 text-xs transition hover:text-$vp-c-brand-1"
+                class="inline-flex rounded-md bg-gray-400/20 mt-1 px-2 py-0.5 text-xs transition"
+                hover="text-$vp-c-brand-1"
                 >{{ tag }}</a
               >
             </div>
             <div
               class="flex-shrink-0 text-right text-sm"
               :class="[
-                showTimeline ? 'order-first w-16' : 'ml-auto mr-4',
+                showTimeline ? 'order-first w-16' : 'ml-auto mr-4 mt-1',
                 activeTag && 'sm:block hidden',
               ]"
             >
-              {{ formatDate(new Date(doc.date), dateFormatStr) }}
+              {{ formatDate(new Date(item.date), dateFormatStr) }}
             </div>
           </a>
         </li>

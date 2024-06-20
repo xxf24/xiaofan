@@ -1,5 +1,5 @@
-import { nextTick } from 'vue'
-import { type UseDarkOptions, useDark } from '@vueuse/core'
+import { nextTick } from "vue"
+import { type UseDarkOptions, useDark } from "@vueuse/core"
 
 export interface UseDarkModeOptions {
   clientX?: number
@@ -12,7 +12,7 @@ export function useDarkMode(options?: UseDarkOptions) {
   return useDark({
     ...options,
     // align vitepress
-    storageKey: 'vitepress-theme-appearance',
+    storageKey: "vitepress-theme-appearance",
   })
 }
 
@@ -22,7 +22,7 @@ export async function toggle(options: UseDarkModeOptions = {}) {
   const {
     clientX: x,
     clientY: y,
-    easing = 'ease-in-out',
+    easing = "ease-in-out",
     duration = 500 /**ms */,
   } = options
 
@@ -47,14 +47,14 @@ export async function toggle(options: UseDarkModeOptions = {}) {
     {
       duration,
       easing,
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+      pseudoElement: `::view-transition-${isDark.value ? "old" : "new"}(root)`,
     },
   )
 }
 
 function enableTransitions() {
   return (
-    'startViewTransition' in document &&
-    window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+    "startViewTransition" in document &&
+    window.matchMedia("(prefers-reduced-motion: no-preference)").matches
   )
 }

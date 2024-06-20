@@ -3,8 +3,8 @@ layout: page
 ---
 
 <script setup>
-import Notes from '@/theme/views/notes.vue'
-import notesJson from '@/data/__notes.json'
+import notes from '@/theme/pages/notes.vue'
+import items from '@/data/notes.json'
 </script>
 
-<Notes :docs="notesJson" />
+<notes :items />
