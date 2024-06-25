@@ -1,0 +1,197 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+:root {
+  --vp-c-bg: var(--bg-1);
+  --vp-c-bg-elv: var(--bg-1);
+  --vp-c-bg-alt: var(--bg-2);
+  --vp-c-bg-soft: var(--bg-2);
+  --vp-c-default-soft: var(--bg-2);
+
+  --vp-c-text-1: var(--text-1);
+  --vp-c-text-2: var(--text-2);
+  --vp-c-text-3: var(--text-3);
+
+  --vp-c-border: var(--border);
+  --vp-c-divider: var(--border);
+}
+
+/**
+ * NavBar
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-nav-blur-bg: #fff9;
+  --vp-nav-bg-color: transparent;
+  --vp-sidebar-bg-color: var(--vp-c-bg);
+}
+
+:root.dark {
+  --vp-nav-blur-bg: #12121299;
+}
+
+.VPNav,
+.VPLocalNav {
+  position: relative;
+  background: var(--vp-nav-blur-bg) !important;
+}
+
+.VPNav::after,
+.VPLocalNav::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: saturate(180%) blur(12px);
+  z-index: -1;
+}
+
+.VPNavBar:not(.home) .divider-line {
+  border-bottom: 1px solid var(--vp-c-gutter);
+}
+
+/**
+ * Sidebar
+ * -------------------------------------------------------------------------- */
+:root {
+  --vp-sidebar-bg-color: var(--vp-c-bg);
+}
+
+@media screen and (min-width: 960px) {
+  .VPNav {
+    --vp-c-gutter: transparent !important;
+  }
+
+  .VPSidebar {
+    padding-top: 0 !important;
+    top: var(--vp-nav-height) !important;
+  }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1280px) {
+  .VPLocalNav {
+    display: none;
+  }
+}
+
+.VPNav .divider {
+  padding-left: 0 !important;
+}
+
+.VPNavBarTitle.has-sidebar .title {
+  border-bottom: none;
+}
+
+.VPSidebarItem .indicator {
+  display: none;
+}
+
+.VPSidebarItem.level-1.collapsed .zodiac-emoji {
+  opacity: 0;
+}
+
+/**
+ * Doc Content
+ * -------------------------------------------------------------------------- */
+@property --underline-offset {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: '0';
+}
+
+.vp-doc a {
+  --underline-offset: 2px;
+  text-decoration-color: transparent;
+  text-underline-offset: var(--underline-offset);
+  transition-property: text-underline-offset;
+}
+
+.vp-doc a:hover {
+  --underline-offset: 5px;
+  text-decoration-color: currentColor;
+}
+
+.vp-doc blockquote {
+  border-left-width: 0.25rem;
+}
+
+.vp-doc:has(hr + h2) hr {
+  display: none;
+}
+
+.vp-doc h2 {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-top: none;
+  border-bottom: 1px solid var(--vp-c-border);
+}
+
+/**
+ * Doc Aside
+ * -------------------------------------------------------------------------- */
+.VPDoc .aside-curtain,
+.VPDoc .aside-content .outline-marker {
+  display: none !important;
+}
+
+.VPDoc .aside .outline-link {
+  padding-top: 0.5rem;
+  line-height: 1.5rem;
+  text-decoration: underline dotted var(--vp-c-border);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.25s ease-in-out;
+}
+
+.VPDoc .aside .outline-link:hover {
+  text-decoration-style: solid;
+  text-decoration-color: var(--vp-c-text-1);
+}
+
+/**
+ * More...
+ * -------------------------------------------------------------------------- */
+th,
+td,
+tr {
+  border: inherit !important;
+}
+
+table {
+  --border-table: 1px solid var(--vp-c-border);
+  width: fit-content;
+  border-radius: var(--radius);
+  border-spacing: 0;
+  border-collapse: separate !important;
+  border: var(--border-table) !important;
+  overflow: hidden;
+}
+
+table th:not(:last-child),
+table td:not(:last-child) {
+  border-right: var(--border-table) !important;
+}
+
+table > thead > tr:not(:last-child) > th,
+table > thead > tr:not(:last-child) > td,
+table > tbody > tr:not(:last-child) > th,
+table > tbody > tr:not(:last-child) > td,
+table > tfoot > tr:not(:last-child) > th,
+table > tfoot > tr:not(:last-child) > td,
+table > tr:not(:last-child) > td,
+table > tr:not(:last-child) > th,
+table > thead:not(:last-child),
+table > tbody:not(:last-child),
+table > tfoot:not(:last-child) {
+  border-bottom: var(--border-table) !important;
+}
+
+.vp-doc img {
+  border-radius: var(--radius);
+}
+
+html.dark .vp-doc img {
+  filter: brightness(0.9);
+}

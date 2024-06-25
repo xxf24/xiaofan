@@ -1,0 +1,36 @@
+@import './vars.css';
+@import './fonts.css';
+@import './custom.css';
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--border);
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
+  -webkit-tap-highlight-color: transparent;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root),
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root),
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
