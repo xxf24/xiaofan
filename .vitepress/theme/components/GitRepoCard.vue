@@ -95,7 +95,7 @@ function getLanguageColor(language?: string) {
   <div ref="target" class="overflow-hidden border rounded-lg">
     <div
       v-if="state === 'loading'"
-      class="min-h-30 animate-pulse bg-black/5 dark:bg-white/10"
+      class="h-30 animate-pulse bg-black/5 dark:bg-white/10"
     />
     <div v-else class="p-4">
       <a
@@ -110,13 +110,11 @@ function getLanguageColor(language?: string) {
         />
         {{ endPoint }}
       </a>
-      <div class="mb-4 break-words text-sm">
-        {{ data.description }}
-      </div>
-      <div class="flex flex-wrap gap-x-7 gap-y-2 text-xs text-$vp-c-text-2">
+      <div class="mb-4 break-words text-sm">{{ data.description }}</div>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-$vp-c-text-2">
         <div class="flex items-center gap-1">
           <span
-            class="h-2.5 w-2.5 rounded-full"
+            class="h-2.5 w-2.5 rounded-full border border-gray-500/40"
             :style="{ 'background-color': getLanguageColor(data.language) }"
           />
           {{ data.language }}
@@ -127,12 +125,17 @@ function getLanguageColor(language?: string) {
         <div class="flex items-center gap-1" title="GitHub Forks">
           <span class="i-lucide-git-fork" />{{ data.forks_count }}
         </div>
-        <div :class="data.stamp && 'ml-auto'">
-          {{
-            data.stamp
-              ? `Updated ${formatTimeAgo(new Date(data.stamp))}`
-              : `Last PR on ${formatTimeAgo(new Date(data.pushed_at))}`
-          }}
+        <div
+          v-if="data.stamp"
+          class="ml-auto flex items-center gap-1"
+          title="Last Updated"
+        >
+          <span class="i-lucide-save" />
+          <span>data updated {{ formatTimeAgo(new Date(data.stamp)) }}</span>
+        </div>
+        <div class="flex items-center gap-1" title="Latest PR">
+          <span class="i-lucide-git-pull-request-create-arrow" />
+          <span>{{ formatTimeAgo(new Date(data.pushed_at)) }}</span>
         </div>
       </div>
     </div>

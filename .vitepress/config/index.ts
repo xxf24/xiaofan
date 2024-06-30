@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import unocss from 'unocss/vite'
+import { SiteInfo } from './constant'
 import { sidebar } from './sidebar'
 import { tsConfigPaths, vpComponentAlias } from './alias'
 import postsJson from '../data/posts.json'
@@ -7,19 +8,17 @@ import notesJson from '../data/notes.json'
 
 export default defineConfig({
   srcDir: 'press',
+  outDir: 'dist',
   cacheDir: 'node_modules/.cache/.vitepress',
   metaChunk: true,
-
-  base: '/',
   cleanUrls: true,
+  base: '/',
   rewrites: {
     'posts/index.md': 'posts.md',
     'notes/index.md': 'notes.md',
   },
 
-  title: '小凡の个人日志',
-  description: '这个人很懒，什么都没留下',
-  lang: 'zh-Hans',
+  ...SiteInfo,
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
   ],
@@ -31,6 +30,7 @@ export default defineConfig({
       { text: '笔记', link: '/notes/', activeMatch: '^/notes' },
       { text: '关于', link: '/about' },
     ],
+    logo: { light: '/ai.jpg', dark: '/ff.jpg' },
     outline: { label: '在本页', level: [2, 3] },
     sidebarMenuLabel: '目录',
     returnToTopLabel: '返回顶部',

@@ -34,15 +34,11 @@ export const sidebar: DefaultTheme.Sidebar = {
   ],
 }
 
-function getPostsSidebar(posts: MarkdownMetaArr): DefaultTheme.SidebarItem[] {
+function getPostsSidebar(posts: MarkdownMetaArr) {
   const currentYearStr = new Date().getFullYear().toString()
-  const zodiacEmojiList = [...'🐭🐮🐯🐰🐉🐍🐴🐑🐒🐔🐶🐷']
   return sortPressByTimeline(posts).map(({ label, items }) => ({
     collapsed: label !== currentYearStr,
-    text: `<div class='flex justify-between'>
-        <span>${label}</span>
-        <span class='zodiac-emoji transition'>${zodiacEmojiList[(Number.parseInt(label) - 2020) % 12]}</span>
-      </div>`,
+    text: label,
     items: items.map(({ title, link, date }) => ({
       text: `<div class='flex justify-between items-center'>
           <span>${title}</span>
@@ -53,7 +49,7 @@ function getPostsSidebar(posts: MarkdownMetaArr): DefaultTheme.SidebarItem[] {
   }))
 }
 
-function getNotesSidebar(notes: MarkdownMetaArr): DefaultTheme.SidebarItem[] {
+function getNotesSidebar(notes: MarkdownMetaArr) {
   const categoryToEmoji: Record<string, string> = {
     开发: '👨‍💻',
     练习: '📐',
@@ -61,6 +57,7 @@ function getNotesSidebar(notes: MarkdownMetaArr): DefaultTheme.SidebarItem[] {
     上网: '🗺️',
   }
   return sortPressByCategory(notes).map(({ label, items }) => ({
+    collapsed: false,
     text: `${categoryToEmoji[label] ?? ''} ${label}`,
     items: items.map(({ title, link }) => ({
       text: title,
